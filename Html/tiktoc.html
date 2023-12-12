@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 style="bg-color:ranirangu">Welcome to TicTacToe</h1>
+<!--  input type="text" id="tic"-->
+
+ <button id='b1' onclick="letsPlay('b1')"> .</button>
+ <button id='b2' onclick="letsPlay('b2')"> .</button>
+  <button id="b3" onclick="letsPlay('b3')">. </button><br> 
+  <button id="b4" onclick="letsPlay('b4')"> .</button>
+  <button id="b5" onclick="letsPlay('b5')"> .</button>
+  <button id="b6" onclick="letsPlay('b6')"> .</button> <br>
+  <button id="b7" onclick="letsPlay('b7')"> .</button>
+  <button id="b8" onclick="letsPlay('b8')"> .</button>
+  <button id="b9" onclick="letsPlay('b9')"> .</button><br> <br>
+  <button id="btn" onclick="refresh()">Reset</button>
+  <script type="text/javascript">
+  n=1;
+  function letsPlay(id)
+  {
+	
+	  if(n==1)
+		  {
+		  //id.textContent="X";
+		    document.getElementById(id).textContent="X";
+		  n=0;
+		  win();
+		  }
+	  else
+		  {
+		  document.getElementById(id).textContent="O";
+		  n=1;
+		  win();
+		  }
+	  document.getElementById(id).disabled=true;
+	//alert("Its Working");  
+  }
+  function resetGame()
+  {
+	  for(let x=1;x<=9;x++){
+		  document.getElementById('b' + x).disabled =false;
+		  document.getElementById('b' + x).textContent=".";
+		  }
+  }
+  var result='true';
+  function win()
+  {
+	// Check rows
+	    for (var i = 1; i <= 9; i += 3) {
+	        if (
+	            document.getElementById('b' + i).textContent !== '.' &&
+	            document.getElementById('b' + i).textContent === document.getElementById('b' + (i + 1)).textContent &&
+	            document.getElementById('b' + i).textContent === document.getElementById('b' + (i + 2)).textContent
+	        ) {
+	            alert('Player ' + document.getElementById('b' + i).textContent + ' wins!');
+	            resetGame();
+	            result='false';
+	            return;
+	        }
+	    }
+
+	    // Check columns
+	    for (var i = 1; i <= 3; i++) {
+	        if (
+	            document.getElementById('b' + i).textContent !== '.' &&
+	            document.getElementById('b' + i).textContent === document.getElementById('b' + (i + 3)).textContent &&
+	            document.getElementById('b' + i).textContent === document.getElementById('b' + (i + 6)).textContent
+	        ) {
+	            alert('Player ' + document.getElementById('b' + i).textContent + ' wins!');
+	            resetGame();
+	            return;
+	        }
+	    }
+
+	    // Check diagonals
+	    if (
+	        document.getElementById('b1').textContent !== '.' &&
+	        document.getElementById('b1').textContent === document.getElementById('b5').textContent &&
+	        document.getElementById('b1').textContent === document.getElementById('b9').textContent
+	    ) {
+	        alert('Player ' + document.getElementById('b1').textContent + ' wins!');
+	        resetGame();
+	        result='false';
+	        return;
+	    }
+
+	    if (
+	        document.getElementById('b3').textContent !== '.' &&
+	        document.getElementById('b3').textContent === document.getElementById('b5').textContent &&
+	        document.getElementById('b3').textContent === document.getElementById('b7').textContent
+	    ) {
+	        alert('Player ' + document.getElementById('b3').textContent + ' wins!');
+	        resetGame();
+	        result='false';
+	        return;
+	    }
+
+	    // Check for a tie
+	    var tie = true;
+	    for (var i = 1; i <= 9; i++) {
+	        if (document.getElementById('b' + i).textContent === '.') {
+	            tie = false;
+	            break;
+	        }
+	    }
+
+	    if (tie) {
+	        alert('It\'s a tie!');
+	        resetGame();
+	    }
+  }
+  </script>
+</body>
+</html>
